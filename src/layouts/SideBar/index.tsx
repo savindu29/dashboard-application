@@ -1,154 +1,108 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {IoIosArrowBack} from "react-icons/io"
+import {TiThMenu} from "react-icons/ti"
+import {BiSearch} from "react-icons/bi"
+import {IoIosArrowDroprightCircle} from "react-icons/io"
 import {
-    Card,
-    Typography,
-    List,
-    ListItem,
-    ListItemPrefix,
-    ListItemSuffix,
-    Chip,
-    Accordion,
-    AccordionHeader,
-    AccordionBody,
-} from "@material-tailwind/react";
-import {
-    PresentationChartBarIcon,
-    ShoppingBagIcon,
-    UserCircleIcon,
-    Cog6ToothIcon,
-    InboxIcon,
-    PowerIcon,
-} from "@heroicons/react/24/solid";
-import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+    FaTh,
+    FaBars,
+    FaUserAlt,
+    FaRegChartBar,
+    FaCommentAlt,
+    FaShoppingBag,
+    FaThList
+}from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
 
-const LeftSideBar = () => {
-    const [open, setOpen] = React.useState(0);
 
-    const handleOpen = (value:any) => {
-        setOpen(open === value ? 0 : value);
-    };
+const LeftSideBar = ({children}:any) => {
+    const[isOpen ,setIsOpen] = useState(true);
+    const toggle = () => setIsOpen (!isOpen);
+    const menuItem=[
+        {
+            path:"/",
+            name:"Dashboard",
+            icon:<FaTh/>
+        },
+        {
+            path:"/page-one",
+            name:"Page-One",
+            icon:<FaUserAlt/>
+        },
+        {
+            path:"/page-two",
+            name:"Page-two",
+            icon:<FaRegChartBar/>
+        },
+        {
+            path:"/comment",
+            name:"Comment",
+            icon:<FaCommentAlt/>
+        },
+        {
+            path:"/product",
+            name:"Product",
+            icon:<FaShoppingBag/>
+        },
+        {
+            path:"/productList",
+            name:"Product List",
+            icon:<FaThList/>
+        }
+    ]
     return (
-        <div>
-            <div className={"w-72 h-screen bg-gray-700"}>
-                <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
-                    <div className="mb-2 p-4">
-                        <Typography variant="h5" color="blue-gray">
-                            Sidebar
-                        </Typography>
+        <div className="">
+            <div className="flex">
+                <div className={`h-screen p-5 pt-5 bg-zinc-200 overflow-y-auto
+                ${isOpen?"w-80":"w-20"}
+                duration-300 relative`}>
+                    <IoIosArrowDroprightCircle className={`text-sky-900 absolute text-2xl top-5.5 cursor-pointer right-1
+                    ${isOpen && "rotate-180"}`}
+                    onClick={()=>setIsOpen(!isOpen)}/>
+                    <div className="inline-flex items-center">
+                        <TiThMenu className={`cursor-pointer text-2xl block float-left mr-2 duration-500 text-sky-900
+                        ${isOpen && "rotate-[360deg]"}
+                        `}/>
+                        <h1 className={`text-sky-900 origin-left font-medium text-xl duration-300 ${!isOpen && "scale-0"}`}>
+                            Menu
+                        </h1>
                     </div>
-                    <List>
-                        <Accordion
-                            open={open === 1}
-                            icon={
-                                <ChevronDownIcon
-                                    strokeWidth={2.5}
-                                    className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""}`}
-                                />
-                            }
-                        >
-                            <ListItem className="p-0" selected={open === 1}>
-                                <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
-                                    <ListItemPrefix>
-                                        <PresentationChartBarIcon className="h-5 w-5" />
-                                    </ListItemPrefix>
-                                    <Typography color="blue-gray" className="mr-auto font-normal">
-                                        Dashboard
-                                    </Typography>
-                                </AccordionHeader>
-                            </ListItem>
-                            <AccordionBody className="py-1">
-                                <List className="p-0">
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                                        </ListItemPrefix>
-                                        Analytics
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                                        </ListItemPrefix>
-                                        Reporting
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                                        </ListItemPrefix>
-                                        Projects
-                                    </ListItem>
-                                </List>
-                            </AccordionBody>
-                        </Accordion>
-                        <Accordion
-                            open={open === 2}
-                            icon={
-                                <ChevronDownIcon
-                                    strokeWidth={2.5}
-                                    className={`mx-auto h-4 w-4 transition-transform ${open === 2 ? "rotate-180" : ""}`}
-                                />
-                            }
-                        >
-                            <ListItem className="p-0" selected={open === 2}>
-                                <AccordionHeader onClick={() => handleOpen(2)} className="border-b-0 p-3">
-                                    <ListItemPrefix>
-                                        <ShoppingBagIcon className="h-5 w-5" />
-                                    </ListItemPrefix>
-                                    <Typography color="blue-gray" className="mr-auto font-normal">
-                                        E-Commerce
-                                    </Typography>
-                                </AccordionHeader>
-                            </ListItem>
-                            <AccordionBody className="py-1">
-                                <List className="p-0">
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                                        </ListItemPrefix>
-                                        Orders
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemPrefix>
-                                            <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                                        </ListItemPrefix>
-                                        Products
-                                    </ListItem>
-                                </List>
-                            </AccordionBody>
-                        </Accordion>
-                        <hr className="my-2 border-blue-gray-50" />
-                        <ListItem>
-                            <ListItemPrefix>
-                                <InboxIcon className="h-5 w-5" />
-                            </ListItemPrefix>
-                            Inbox
-                            <ListItemSuffix>
-                                <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-                            </ListItemSuffix>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemPrefix>
-                                <UserCircleIcon className="h-5 w-5" />
-                            </ListItemPrefix>
-                            Profile
-                        </ListItem>
-                        <ListItem>
-                            <ListItemPrefix>
-                                <Cog6ToothIcon className="h-5 w-5" />
-                            </ListItemPrefix>
-                            Settings
-                        </ListItem>
-                        <ListItem>
-                            <ListItemPrefix>
-                                <PowerIcon className="h-5 w-5" />
-                            </ListItemPrefix>
-                            Log Out
-                        </ListItem>
-                    </List>
-                </Card>
+                      <div className={`flex item-center rounded-md bg-zinc-300 mt-6
+                      ${!isOpen ?"px-2.5":"px-2.5" } py-2`}>
+                          <BiSearch className={`text-sky-900 text-2xl block float-left cursor-pointer
+                          ${isOpen && "mr-2"}
+                          `}/>
 
+                    <input type="search"
+                    placeholder={"Search"}
+                           className={`text-base bg-transparent w-full text-black focus:outline-none
+                            ${!isOpen && "hidden"}
+                           `}
+                    />
+                      </div>
+                </div>
             </div>
+            {/*<div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">*/}
+            {/*    <div className="top_section">*/}
+            {/*        <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>*/}
+            {/*        <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">*/}
+            {/*            <FaBars onClick={toggle}/>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*    {*/}
+            {/*        menuItem.map((item, index)=>(*/}
+            {/*            <NavLink to={item.path} key={index} className="link" >*/}
+            {/*                <div className="icon">{item.icon}</div>*/}
+            {/*                <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>*/}
+            {/*            </NavLink>*/}
+            {/*        ))*/}
+            {/*    }*/}
+            {/*</div>*/}
+            <main>{children}</main>
         </div>
     );
 };
+
+
 
 export default LeftSideBar;
