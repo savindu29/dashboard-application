@@ -44,24 +44,24 @@ export default function TopBar() {
                                     {/*    alt="Your Company"*/}
                                     {/*/>*/}
                                 </div>
-                                <div className="hidden sm:ml-6 sm:block">
-                                    <div className="flex space-x-4 items-center">
-                                        <div className={`flex rounded-md px-3 py-2 text-sm font-medium   bg-sky-900 text-white  cursor-pointer`} onClick={()=>setIsFetch(!isFetch)}>All Orders Stages
-                                            <IoIosArrowDroprightCircle className={`text-white  text-xl ml-3 duration-500 
-                    ${isFetch && "rotate-180"}`}/>
-                                        </div>
-                                        <div className={` ${isFetch ? "block" : "hidden"} duration-500 `}>
+                    {/*            <div className="hidden sm:ml-6 sm:block">*/}
+                    {/*                <div className="flex space-x-4 items-center">*/}
+                    {/*                    <div className={`flex rounded-md px-3 py-2 text-sm font-medium   bg-sky-900 text-white  cursor-pointer`} onClick={()=>setIsFetch(!isFetch)}>All Orders Stages*/}
+                    {/*                        <IoIosArrowDroprightCircle className={`text-white  text-xl ml-3 duration-500 */}
+                    {/*${isFetch && "rotate-180"}`}/>*/}
+                    {/*                    </div>*/}
+                    {/*                    <div className={` ${isFetch ? "block" : "hidden"} duration-500 `}>*/}
 
-                                                {
-                                                    navigation.map((item, index)=>(
-                                                        <NavLink to={item.href} key={index} className="link border mr-4 border-sky-900 text-gray-300 hover:bg-sky-900 hover:text-white rounded-md px-3 py-2 text-sm font-medium " >  {item.name}
+                    {/*                            {*/}
+                    {/*                                navigation.map((item, index)=>(*/}
+                    {/*                                    <NavLink to={item.href} key={index} className="link border mr-4 border-sky-900 text-gray-300 hover:bg-sky-900 hover:text-white rounded-md px-3 py-2 text-sm font-medium " >  {item.name}*/}
 
-                                                        </NavLink>
-                                                    ))
-                                                }
-                                        </div>
-                                    </div>
-                                </div>
+                    {/*                                    </NavLink>*/}
+                    {/*                                ))*/}
+                    {/*                            }*/}
+                    {/*                    </div>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <button
